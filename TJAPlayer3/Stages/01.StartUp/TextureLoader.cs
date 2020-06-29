@@ -33,6 +33,7 @@ namespace TJAPlayer3
         const string FAILED = @"15_Failed\";
         const string RUNNER = @"16_Runner\";
         const string PUCHICHARA = @"18_PuchiChara\";
+        const string TRAINING = @"19_Training\";
         const string DANC = @"17_DanC\";
 
         // InGame_Effects
@@ -469,6 +470,11 @@ namespace TJAPlayer3
             #region PuichiChara
             PuchiChara = TxC(GAME + PUCHICHARA + @"0.png");
             #endregion
+            #region Training
+            Tokkun_DownBG = TxC(GAME + TRAINING + @"Down.png");
+            Tokkun_BigTaiko = TxC(GAME + TRAINING + @"BigTaiko.png");
+            Tokkun_ProgressBar = TxC(GAME + TRAINING + @"ProgressBar.png");
+            #endregion
             #endregion
 
             #region 6_結果発表
@@ -706,6 +712,11 @@ namespace TJAPlayer3
             #region PuchiChara
             TJAPlayer3.t安全にDisposeする(ref PuchiChara);
             #endregion
+            #region Training
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_DownBG);
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_BigTaiko);
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_ProgressBar);
+            #endregion
             #endregion
 
             #region 6_結果発表
@@ -936,6 +947,11 @@ namespace TJAPlayer3
         #endregion
         #region PuchiChara
         public CTexture PuchiChara;
+        #endregion
+        #region Training
+        public CTexture Tokkun_DownBG;
+        public CTexture Tokkun_BigTaiko;
+        public CTexture Tokkun_ProgressBar;
         #endregion
         #endregion
 

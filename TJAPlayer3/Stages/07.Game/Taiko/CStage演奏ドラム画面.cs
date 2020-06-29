@@ -346,7 +346,8 @@ namespace TJAPlayer3
                 }
                 else if (TJAPlayer3.ConfigIni.bBGA有効)
                 {
-                    actBackground.On進行描画();
+                    if (TJAPlayer3.ConfigIni.eGameMode == EGame.特訓モード) actTokkun.On進行描画_背景();
+                    else actBackground.On進行描画();
                 }
 
                 if (!TJAPlayer3.ConfigIni.bAVI有効)
@@ -354,12 +355,12 @@ namespace TJAPlayer3
                     actRollChara.On進行描画();
                 }
 
-                if (!bDoublePlay && TJAPlayer3.ConfigIni.ShowDancer)
+                if (!bDoublePlay && TJAPlayer3.ConfigIni.ShowDancer && TJAPlayer3.ConfigIni.eGameMode != EGame.特訓モード)
                 {
                     actDancer.On進行描画();
                 }
 
-                if (!bDoublePlay && TJAPlayer3.ConfigIni.ShowFooter)
+                if (!bDoublePlay && TJAPlayer3.ConfigIni.ShowFooter && TJAPlayer3.ConfigIni.eGameMode != EGame.特訓モード)
                     this.actFooter.On進行描画();
 
                 if( TJAPlayer3.ConfigIni.ShowChara )
@@ -454,8 +455,6 @@ namespace TJAPlayer3
                         bIsFinishedPlaying = false;
                         TJAPlayer3.Skin.sound特訓停止音.t再生する();
                         actTokkun.t演奏を停止する();
-
-                        actTokkun.n現在の小節線 = TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0];
                         actTokkun.t譜面の表示位置を合わせる(true);
                     }
                     else

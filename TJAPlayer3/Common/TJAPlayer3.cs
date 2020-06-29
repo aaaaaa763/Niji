@@ -23,6 +23,7 @@ namespace TJAPlayer3
 														//public const string D3DXDLL = "d3dx9_42.dll"; // February 2010
 														//public const string D3DXDLL = "d3dx9_41.dll"; // March 2009
 
+
 		// プロパティ
 		#region [ properties ]
 

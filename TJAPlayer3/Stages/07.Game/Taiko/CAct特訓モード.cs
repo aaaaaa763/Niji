@@ -126,8 +126,24 @@ namespace TJAPlayer3
                 }
 
                 if (!this.b特訓PAUSE && this.n現在の小節線 < TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0]) this.n現在の小節線 = TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0];
-
             }
+            return base.On進行描画();
+        }
+
+        public int On進行描画_背景()
+        {
+            if (TJAPlayer3.Tx.Tokkun_DownBG != null) TJAPlayer3.Tx.Tokkun_DownBG.t2D描画(TJAPlayer3.app.Device, 0, 360);
+            if (TJAPlayer3.Tx.Tokkun_BigTaiko != null) TJAPlayer3.Tx.Tokkun_BigTaiko.t2D描画(TJAPlayer3.app.Device, 334, 400);
+
+            var length = (TJAPlayer3.DTX.listChip.Count > 0) ? TJAPlayer3.DTX.listChip[TJAPlayer3.DTX.listChip.Count - 1].n発声時刻ms : 0;
+
+            var currentMs = CSound管理.rc演奏用タイマ.n現在時刻ms;
+            if (this.b特訓PAUSE) currentMs = this.nスクロール後ms;
+            var current = ((double)(currentMs * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)));
+            var percentage = current / length;
+
+            if (TJAPlayer3.Tx.Tokkun_ProgressBar != null) TJAPlayer3.Tx.Tokkun_ProgressBar.t2D描画(TJAPlayer3.app.Device, 333, 378, new Rectangle(1, 1, (int)(TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Width * percentage), TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Height));
+
             return base.On進行描画();
         }
 
