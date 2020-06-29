@@ -474,6 +474,7 @@ namespace TJAPlayer3
             Tokkun_DownBG = TxC(GAME + TRAINING + @"Down.png");
             Tokkun_BigTaiko = TxC(GAME + TRAINING + @"BigTaiko.png");
             Tokkun_ProgressBar = TxC(GAME + TRAINING + @"ProgressBar.png");
+            Tokkun_GoGoPoint = TxC(GAME + TRAINING + @"GoGoPoint.png");
             #endregion
             #endregion
 
@@ -716,6 +717,7 @@ namespace TJAPlayer3
             TJAPlayer3.t安全にDisposeする(ref Tokkun_DownBG);
             TJAPlayer3.t安全にDisposeする(ref Tokkun_BigTaiko);
             TJAPlayer3.t安全にDisposeする(ref Tokkun_ProgressBar);
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_GoGoPoint);
             #endregion
             #endregion
 
@@ -952,6 +954,7 @@ namespace TJAPlayer3
         public CTexture Tokkun_DownBG;
         public CTexture Tokkun_BigTaiko;
         public CTexture Tokkun_ProgressBar;
+        public CTexture Tokkun_GoGoPoint;
         #endregion
         #endregion
 

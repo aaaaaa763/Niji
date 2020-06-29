@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using SlimDX.DirectInput;
 using FDK;
@@ -23,12 +24,31 @@ namespace TJAPlayer3
             CDTX dTX = TJAPlayer3.DTX;
 
             var measureCount = 1;
+            var bIsInGoGo = false;
+            var length = (TJAPlayer3.DTX.listChip.Count > 0) ? TJAPlayer3.DTX.listChip[TJAPlayer3.DTX.listChip.Count - 1].n発声時刻ms : 0;
 
             for (int i = 0; i < dTX.listChip.Count; i++)
             {
                 CDTX.CChip pChip = dTX.listChip[i];
 
                 if (pChip.n整数値_内部番号 > measureCount) measureCount = pChip.n整数値_内部番号;
+
+                Trace.TraceInformation("chip[" + i + "]: gogo=" + pChip.bGOGOTIME + ", ch=" + pChip.nチャンネル番号);
+
+                if (pChip.nチャンネル番号 == 0x9E && !bIsInGoGo)
+                {
+                    bIsInGoGo = true;
+
+                    var current = ((double)(pChip.db発声時刻ms * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)));
+                    var width = 0;
+                    if (TJAPlayer3.Tx.Tokkun_ProgressBar != null) width = TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Width;
+
+                    this.gogoXList.Add((int)(width * (current / length)));
+                }
+                if (pChip.nチャンネル番号 == 0x9F && bIsInGoGo)
+                {
+                    bIsInGoGo = false;
+                }
             }
 
             this.n小節の総数 = measureCount;
@@ -143,6 +163,14 @@ namespace TJAPlayer3
             var percentage = current / length;
 
             if (TJAPlayer3.Tx.Tokkun_ProgressBar != null) TJAPlayer3.Tx.Tokkun_ProgressBar.t2D描画(TJAPlayer3.app.Device, 333, 378, new Rectangle(1, 1, (int)(TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Width * percentage), TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Height));
+
+            if (TJAPlayer3.Tx.Tokkun_GoGoPoint != null)
+            {
+                foreach (int xpos in gogoXList)
+                {
+                    TJAPlayer3.Tx.Tokkun_GoGoPoint.t2D描画(TJAPlayer3.app.Device, xpos + 333 - (TJAPlayer3.Tx.Tokkun_GoGoPoint.szテクスチャサイズ.Width / 2), 396);
+                }
+            }
 
             return base.On進行描画();
         }
@@ -263,6 +291,8 @@ namespace TJAPlayer3
 
         private CCounter スクロールカウンター;
         private Easing easing = new Easing();
+
+        private List<int> gogoXList = new List<int>();
         #endregion
     }
 }
