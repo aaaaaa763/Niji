@@ -455,7 +455,7 @@ namespace TJAPlayer3
                         bIsFinishedPlaying = false;
                         TJAPlayer3.Skin.sound特訓停止音.t再生する();
                         actTokkun.t演奏を停止する();
-                        actTokkun.t譜面の表示位置を合わせる(true);
+                        actTokkun.t譜面の表示位置を合わせる(false);
                     }
                     else
                     {
