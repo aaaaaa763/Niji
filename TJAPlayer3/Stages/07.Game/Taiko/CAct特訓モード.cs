@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using SlimDX.DirectInput;
@@ -33,8 +34,6 @@ namespace TJAPlayer3
 
                 if (pChip.n整数値_内部番号 > measureCount) measureCount = pChip.n整数値_内部番号;
 
-                Trace.TraceInformation("chip[" + i + "]: gogo=" + pChip.bGOGOTIME + ", ch=" + pChip.nチャンネル番号);
-
                 if (pChip.nチャンネル番号 == 0x9E && !bIsInGoGo)
                 {
                     bIsInGoGo = true;
@@ -52,8 +51,6 @@ namespace TJAPlayer3
             }
 
             this.n小節の総数 = measureCount;
-
-            Trace.TraceInformation("TOKKUN: total measures->" + this.n小節の総数);
         }
 
         public override void On非活性化()
@@ -65,6 +62,8 @@ namespace TJAPlayer3
         {
             if (!base.b活性化してない)
             {
+                if (TJAPlayer3.Tx.Tokkun_Background_Up != null) this.ct背景スクロールタイマー = new CCounter(1, TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width, 16, TJAPlayer3.Timer);
+
                 base.OnManagedリソースの作成();
             }
         }
@@ -134,9 +133,9 @@ namespace TJAPlayer3
 
                 if (this.bスクロール中)
                 {
-                    CSound管理.rc演奏用タイマ.n現在時刻ms = easing.EaseOut(this.スクロールカウンター, (int)this.nスクロール前ms, (int)this.nスクロール後ms, Easing.CalcType.Circular);
+                    CSound管理.rc演奏用タイマ.n現在時刻ms = easing.EaseOut(this.ctスクロールカウンター, (int)this.nスクロール前ms, (int)this.nスクロール後ms, Easing.CalcType.Circular);
 
-                    this.スクロールカウンター.t進行();
+                    this.ctスクロールカウンター.t進行();
 
                     if ((int)CSound管理.rc演奏用タイマ.n現在時刻ms == (int)this.nスクロール後ms)
                     {
@@ -169,6 +168,21 @@ namespace TJAPlayer3
                 foreach (int xpos in gogoXList)
                 {
                     TJAPlayer3.Tx.Tokkun_GoGoPoint.t2D描画(TJAPlayer3.app.Device, xpos + 333 - (TJAPlayer3.Tx.Tokkun_GoGoPoint.szテクスチャサイズ.Width / 2), 396);
+                }
+            }
+
+            if (this.ct背景スクロールタイマー != null)
+            {
+                this.ct背景スクロールタイマー.t進行Loop();
+
+                double TexSize = 1280 / TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width;
+                // 1280をテクスチャサイズで割ったものを切り上げて、プラス+1足す。
+                int ForLoop = (int)Math.Ceiling(TexSize) + 1;
+                //int nループ幅 = 328;
+                TJAPlayer3.Tx.Tokkun_Background_Up.t2D描画(TJAPlayer3.app.Device, 0 - this.ct背景スクロールタイマー.n現在の値, TJAPlayer3.Skin.Background_Scroll_Y[0]);
+                for (int l = 1; l < ForLoop + 1; l++)
+                {
+                    TJAPlayer3.Tx.Tokkun_Background_Up.t2D描画(TJAPlayer3.app.Device, +(l * TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width) - this.ct背景スクロールタイマー.n現在の値, TJAPlayer3.Skin.Background_Scroll_Y[0]);
                 }
             }
 
@@ -271,7 +285,7 @@ namespace TJAPlayer3
                 this.nスクロール後ms = dTX.listChip[TJAPlayer3.stage演奏ドラム画面.n現在のトップChip].n発声時刻ms;
                 this.bスクロール中 = true;
 
-                this.スクロールカウンター = new CCounter(0, 350, 1, TJAPlayer3.Timer);
+                this.ctスクロールカウンター = new CCounter(0, 350, 1, TJAPlayer3.Timer);
             }
             else
             {
@@ -289,7 +303,8 @@ namespace TJAPlayer3
         private bool b特訓PAUSE;
         private bool bスクロール中;
 
-        private CCounter スクロールカウンター;
+        private CCounter ctスクロールカウンター;
+        private CCounter ct背景スクロールタイマー;
         private Easing easing = new Easing();
 
         private List<int> gogoXList = new List<int>();
