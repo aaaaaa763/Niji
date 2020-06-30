@@ -473,9 +473,12 @@ namespace TJAPlayer3
             #region Training
             Tokkun_DownBG = TxC(GAME + TRAINING + @"Down.png");
             Tokkun_BigTaiko = TxC(GAME + TRAINING + @"BigTaiko.png");
-            Tokkun_ProgressBar = TxC(GAME + TRAINING + @"ProgressBar.png");
+            Tokkun_ProgressBar = TxC(GAME + TRAINING + @"ProgressBar_Red.png");
+            Tokkun_ProgressBarWhite = TxC(GAME + TRAINING + @"ProgressBar_White.png");
             Tokkun_GoGoPoint = TxC(GAME + TRAINING + @"GoGoPoint.png");
             Tokkun_Background_Up = TxC(GAME + TRAINING + @"Background_Up.png");
+            Tokkun_BigNumber = TxC(GAME + TRAINING + @"BigNumber.png");
+            Tokkun_SmallNumber = TxC(GAME + TRAINING + @"SmallNumber.png");
             #endregion
             #endregion
 
@@ -718,8 +721,11 @@ namespace TJAPlayer3
             TJAPlayer3.t安全にDisposeする(ref Tokkun_DownBG);
             TJAPlayer3.t安全にDisposeする(ref Tokkun_BigTaiko);
             TJAPlayer3.t安全にDisposeする(ref Tokkun_ProgressBar);
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_ProgressBarWhite);
             TJAPlayer3.t安全にDisposeする(ref Tokkun_GoGoPoint);
             TJAPlayer3.t安全にDisposeする(ref Tokkun_Background_Up);
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_BigNumber);
+            TJAPlayer3.t安全にDisposeする(ref Tokkun_SmallNumber);
             #endregion
             #endregion
 
@@ -956,8 +962,11 @@ namespace TJAPlayer3
         public CTexture Tokkun_DownBG;
         public CTexture Tokkun_BigTaiko;
         public CTexture Tokkun_ProgressBar;
+        public CTexture Tokkun_ProgressBarWhite;
         public CTexture Tokkun_GoGoPoint;
         public CTexture Tokkun_Background_Up;
+        public CTexture Tokkun_BigNumber;
+        public CTexture Tokkun_SmallNumber;
         #endregion
         #endregion
 
