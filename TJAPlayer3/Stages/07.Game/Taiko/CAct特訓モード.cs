@@ -172,14 +172,14 @@ namespace TJAPlayer3
             var currentWhite = (double)(this.n最終演奏位置ms * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0));
             var percentageWhite = currentWhite / length;
 
-            if (TJAPlayer3.Tx.Tokkun_ProgressBarWhite != null) TJAPlayer3.Tx.Tokkun_ProgressBarWhite.t2D描画(TJAPlayer3.app.Device, 333, 378, new Rectangle(1, 1, (int)(TJAPlayer3.Tx.Tokkun_ProgressBarWhite.szテクスチャサイズ.Width * percentageWhite), TJAPlayer3.Tx.Tokkun_ProgressBarWhite.szテクスチャサイズ.Height));
-            if (TJAPlayer3.Tx.Tokkun_ProgressBar != null) TJAPlayer3.Tx.Tokkun_ProgressBar.t2D描画(TJAPlayer3.app.Device, 333, 378, new Rectangle(1, 1, (int)(TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Width * percentage), TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Height));
+            if (TJAPlayer3.Tx.Tokkun_ProgressBarWhite != null) TJAPlayer3.Tx.Tokkun_ProgressBarWhite.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_ProgressBar_X, TJAPlayer3.Skin.Game_Training_ProgressBar_Y, new Rectangle(1, 1, (int)(TJAPlayer3.Tx.Tokkun_ProgressBarWhite.szテクスチャサイズ.Width * percentageWhite), TJAPlayer3.Tx.Tokkun_ProgressBarWhite.szテクスチャサイズ.Height));
+            if (TJAPlayer3.Tx.Tokkun_ProgressBar != null) TJAPlayer3.Tx.Tokkun_ProgressBar.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_ProgressBar_X, TJAPlayer3.Skin.Game_Training_ProgressBar_Y, new Rectangle(1, 1, (int)(TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Width * percentage), TJAPlayer3.Tx.Tokkun_ProgressBar.szテクスチャサイズ.Height));
 
             if (TJAPlayer3.Tx.Tokkun_GoGoPoint != null)
             {
                 foreach (int xpos in gogoXList)
                 {
-                    TJAPlayer3.Tx.Tokkun_GoGoPoint.t2D描画(TJAPlayer3.app.Device, xpos + 333 - (TJAPlayer3.Tx.Tokkun_GoGoPoint.szテクスチャサイズ.Width / 2), 396);
+                    TJAPlayer3.Tx.Tokkun_GoGoPoint.t2D描画(TJAPlayer3.app.Device, xpos + TJAPlayer3.Skin.Game_Training_ProgressBar_X - (TJAPlayer3.Tx.Tokkun_GoGoPoint.szテクスチャサイズ.Width / 2), TJAPlayer3.Skin.Game_Training_GoGoPoint_Y);
                 }
             }
 
@@ -200,25 +200,25 @@ namespace TJAPlayer3
             var measureStr = TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0].ToString();
             if (TJAPlayer3.Tx.Tokkun_SmallNumber != null)
             {
-                var x = 284;
+                var x = TJAPlayer3.Skin.Game_Training_MaxMeasureCount_X;
                 foreach (char c in maxMeasureStr)
                 {
                     var currentNum = int.Parse(c.ToString());
-                    TJAPlayer3.Tx.Tokkun_SmallNumber.t2D描画(TJAPlayer3.app.Device, x, 377, new Rectangle(17 * currentNum, 0, 17, 27));
-                    x += 15;
+                    TJAPlayer3.Tx.Tokkun_SmallNumber.t2D描画(TJAPlayer3.app.Device, x, TJAPlayer3.Skin.Game_Training_MaxMeasureCount_Y, new Rectangle(TJAPlayer3.Skin.Game_Training_SmallNumber_Width * currentNum, 0, TJAPlayer3.Skin.Game_Training_SmallNumber_Width, TJAPlayer3.Tx.Tokkun_SmallNumber.szテクスチャサイズ.Height));
+                    x += TJAPlayer3.Skin.Game_Training_SmallNumber_Width - 2;
                 }
             }
 
-            var subtractVal = 18 * (measureStr.Length - 1);
+            var subtractVal = (TJAPlayer3.Skin.Game_Training_BigNumber_Width - 2) * (measureStr.Length - 1);
 
             if (TJAPlayer3.Tx.Tokkun_BigNumber != null)
             {
-                var x = 254;
+                var x = TJAPlayer3.Skin.Game_Training_CurrentMeasureCount_X;
                 foreach (char c in measureStr)
                 {
                     var currentNum = int.Parse(c.ToString());
-                    TJAPlayer3.Tx.Tokkun_BigNumber.t2D描画(TJAPlayer3.app.Device, x - subtractVal, 370, new Rectangle(20 * currentNum, 0, 20, 34));
-                    x += 18;
+                    TJAPlayer3.Tx.Tokkun_BigNumber.t2D描画(TJAPlayer3.app.Device, x - subtractVal, TJAPlayer3.Skin.Game_Training_CurrentMeasureCount_Y, new Rectangle(TJAPlayer3.Skin.Game_Training_BigNumber_Width * currentNum, 0, TJAPlayer3.Skin.Game_Training_BigNumber_Width, TJAPlayer3.Tx.Tokkun_BigNumber.szテクスチャサイズ.Height));
+                    x += TJAPlayer3.Skin.Game_Training_BigNumber_Width - 2;
                 }
 
                 var playSpd = TJAPlayer3.ConfigIni.n演奏速度 / 20.0d;
@@ -226,17 +226,17 @@ namespace TJAPlayer3
                 var playSpdStr = Decimal.Round((decimal)playSpdI, 1, MidpointRounding.AwayFromZero).ToString();
                 var decimalStr = (playSpdStr == "0") ? "0" : playSpdStr[2].ToString();
 
-                TJAPlayer3.Tx.Tokkun_BigNumber.t2D描画(TJAPlayer3.app.Device, 115, 370, new Rectangle(20 * int.Parse(decimalStr), 0, 20, 34));
+                TJAPlayer3.Tx.Tokkun_BigNumber.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_SpeedDisplay_X, TJAPlayer3.Skin.Game_Training_SpeedDisplay_Y, new Rectangle(TJAPlayer3.Skin.Game_Training_BigNumber_Width * int.Parse(decimalStr), 0, TJAPlayer3.Skin.Game_Training_BigNumber_Width, TJAPlayer3.Tx.Tokkun_BigNumber.szテクスチャサイズ.Height));
 
-                x = 90;
+                x = TJAPlayer3.Skin.Game_Training_SpeedDisplay_X - 25;
 
-                subtractVal = 18 * (((int)playSpd).ToString().Length - 1);
+                subtractVal = TJAPlayer3.Skin.Game_Training_BigNumber_Width * (((int)playSpd).ToString().Length - 1);
 
                 foreach (char c in ((int)playSpd).ToString())
                 {
                     var currentNum = int.Parse(c.ToString());
-                    TJAPlayer3.Tx.Tokkun_BigNumber.t2D描画(TJAPlayer3.app.Device, x - subtractVal, 370, new Rectangle(20 * currentNum, 0, 20, 34));
-                    x += 18;
+                    TJAPlayer3.Tx.Tokkun_BigNumber.t2D描画(TJAPlayer3.app.Device, x - subtractVal, TJAPlayer3.Skin.Game_Training_SpeedDisplay_Y, new Rectangle(TJAPlayer3.Skin.Game_Training_BigNumber_Width * currentNum, 0, TJAPlayer3.Skin.Game_Training_BigNumber_Width, TJAPlayer3.Tx.Tokkun_BigNumber.szテクスチャサイズ.Height));
+                    x += TJAPlayer3.Skin.Game_Training_BigNumber_Width - 2;
                 }
             }
 
@@ -339,7 +339,7 @@ namespace TJAPlayer3
                 this.nスクロール後ms = dTX.listChip[TJAPlayer3.stage演奏ドラム画面.n現在のトップChip].n発声時刻ms;
                 this.bスクロール中 = true;
 
-                this.ctスクロールカウンター = new CCounter(0, 350, 1, TJAPlayer3.Timer);
+                this.ctスクロールカウンター = new CCounter(0, TJAPlayer3.Skin.Game_Training_ScrollTime, 1, TJAPlayer3.Timer);
             }
             else
             {

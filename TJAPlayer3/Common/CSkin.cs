@@ -2174,6 +2174,56 @@ namespace TJAPlayer3
                                 Game_PuchiChara_SineTimer = double.Parse(strParam);
                             }
                             #endregion
+                            #region Training
+                            else if (strCommand == nameof(Game_Training_ScrollTime))
+                            {
+                                Game_Training_ScrollTime = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_ProgressBar_X))
+                            {
+                                Game_Training_ProgressBar_X = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_ProgressBar_Y))
+                            {
+                                Game_Training_ProgressBar_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_GoGoPoint_Y))
+                            {
+                                Game_Training_GoGoPoint_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_MaxMeasureCount_X))
+                            {
+                                Game_Training_MaxMeasureCount_X = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_MaxMeasureCount_Y))
+                            {
+                                Game_Training_MaxMeasureCount_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_CurrentMeasureCount_X))
+                            {
+                                Game_Training_CurrentMeasureCount_X = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_CurrentMeasureCount_Y))
+                            {
+                                Game_Training_CurrentMeasureCount_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_SpeedDisplay_X))
+                            {
+                                Game_Training_SpeedDisplay_X = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_SpeedDisplay_Y))
+                            {
+                                Game_Training_SpeedDisplay_Y = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_SmallNumber_Width))
+                            {
+                                Game_Training_SmallNumber_Width = int.Parse(strParam);
+                            }
+                            else if (strCommand == nameof(Game_Training_BigNumber_Width))
+                            {
+                                Game_Training_BigNumber_Width = int.Parse(strParam);
+                            }
+                            #endregion
                             #endregion
                             #region Result
                             else if (strCommand == nameof(Result_MusicName_XY))
@@ -2727,6 +2777,20 @@ namespace TJAPlayer3
         public int[] Game_DanC_ExamUnit_Size = new int[] { 30, 36 };
         public int[] Game_DanC_Exam_Offset = new int[] { 932, 17 };
         public int[] Game_DanC_Dan_Plate = new int[] { 149, 416 };
+        #endregion
+        #region Training
+        public int Game_Training_ScrollTime = 350;
+        public int Game_Training_ProgressBar_X = 333;
+        public int Game_Training_ProgressBar_Y = 378;
+        public int Game_Training_GoGoPoint_Y = 396;
+        public int Game_Training_MaxMeasureCount_X = 284;
+        public int Game_Training_MaxMeasureCount_Y = 377;
+        public int Game_Training_CurrentMeasureCount_X = 254;
+        public int Game_Training_CurrentMeasureCount_Y = 370;
+        public int Game_Training_SpeedDisplay_X = 115;
+        public int Game_Training_SpeedDisplay_Y = 370;
+        public int Game_Training_SmallNumber_Width = 17;
+        public int Game_Training_BigNumber_Width = 20;
         #endregion
         #endregion
         #region Result

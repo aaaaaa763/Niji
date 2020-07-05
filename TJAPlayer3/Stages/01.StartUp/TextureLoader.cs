@@ -144,7 +144,6 @@ namespace TJAPlayer3
             Notes_Arm = TxC(GAME + @"Notes_Arm.png");
             Judge = TxC(GAME + @"Judge.png");
 
-            Judge_Meter = TxC(GAME + @"Judge_Meter.png");
             Bar = TxC(GAME + @"Bar.png");
             Bar_Branch = TxC(GAME + @"Bar_Branch.png");
 
@@ -576,7 +575,6 @@ namespace TJAPlayer3
             TJAPlayer3.t安全にDisposeする(ref Notes_Arm);
             TJAPlayer3.t安全にDisposeする(ref Judge);
 
-            TJAPlayer3.t安全にDisposeする(ref Judge_Meter);
             TJAPlayer3.t安全にDisposeする(ref Bar);
             TJAPlayer3.t安全にDisposeする(ref Bar_Branch);
 
@@ -819,8 +817,7 @@ namespace TJAPlayer3
             SENotes,
             Notes_Arm,
             Judge;
-        public CTexture Judge_Meter,
-            Bar,
+        public CTexture Bar,
             Bar_Branch;
         #endregion
         #region キャラクター

@@ -1912,12 +1912,11 @@ namespace TJAPlayer3
             {
                 //ボードの横幅は333px
                 //数字フォントの小さいほうはリザルトのものと同じ。
-                if( TJAPlayer3.Tx.Judge_Meter != null )
-                    TJAPlayer3.Tx.Judge_Meter.t2D描画( TJAPlayer3.app.Device, 0, 360 );
 
-                this.t小文字表示( 102, 494, string.Format( "{0,4:###0}", this.nヒット数_Auto含まない.Drums.Perfect.ToString() ), false );
-                this.t小文字表示( 102, 532, string.Format( "{0,4:###0}", this.nヒット数_Auto含まない.Drums.Great.ToString() ), false );
-                this.t小文字表示( 102, 570, string.Format( "{0,4:###0}", this.nヒット数_Auto含まない.Drums.Miss.ToString() ), false );
+                this.t小文字表示(102, 500, string.Format("{0,4:###0}", this.nヒット数_Auto含まない.Drums.Perfect.ToString()), false);
+                this.t小文字表示(102, 538, string.Format("{0,4:###0}", this.nヒット数_Auto含まない.Drums.Great.ToString()), false);
+                this.t小文字表示(102, 577, string.Format("{0,4:###0}", this.nヒット数_Auto含まない.Drums.Miss.ToString()), false);
+                this.t小文字表示(102, 634, string.Format("{0,4:###0}", GetRoll(0)), false);
 
                 int nNowTotal = this.nヒット数_Auto含まない.Drums.Perfect + this.nヒット数_Auto含まない.Drums.Great + this.nヒット数_Auto含まない.Drums.Miss;
                 double dbたたけた率 = Math.Round((100.0 * ( TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Perfect + TJAPlayer3.stage演奏ドラム画面.nヒット数_Auto含まない.Drums.Great)) / (double)nNowTotal);
@@ -1934,10 +1933,10 @@ namespace TJAPlayer3
                 if (double.IsNaN(dbMISS率))
                     dbMISS率 = 0;
 
-                this.t大文字表示( 202, 436, string.Format( "{0,3:##0}%", dbたたけた率 ) );
-                this.t小文字表示( 206, 494, string.Format( "{0,3:##0}%", dbPERFECT率 ), false );
-                this.t小文字表示( 206, 532, string.Format( "{0,3:##0}%", dbGREAT率 ), false );
-                this.t小文字表示( 206, 570, string.Format( "{0,3:##0}%", dbMISS率 ), false );
+                this.t大文字表示(202, 442, string.Format("{0,3:##0}%", dbたたけた率));
+                this.t小文字表示(206, 500, string.Format("{0,3:##0}%", dbPERFECT率), false);
+                this.t小文字表示(206, 537, string.Format("{0,3:##0}%", dbGREAT率), false);
+                this.t小文字表示(206, 578, string.Format("{0,3:##0}%", dbMISS率), false);
             }
         }
 
