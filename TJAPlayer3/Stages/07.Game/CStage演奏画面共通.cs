@@ -111,17 +111,21 @@ namespace TJAPlayer3
 				}
 
 				int n整数値管理 = 0;
-				foreach (CDTX.CChip chip in listChip[i])
+				if (r指定時刻に一番近い未ヒットChipを過去方向優先で検索する(0, i) != null) //2020.07.08 Mr-Ojii 未ヒットチップがないときの例外の発生回避 <-(KabanFriends)コード借りましたごめんなさい(´・ω・`)
 				{
-					chip.nList上の位置 = n整数値管理;
-					if ((chip.nチャンネル番号 == 0x15 || chip.nチャンネル番号 == 0x16) && (n整数値管理 < this.listChip[i].Count - 1))
+					foreach (CDTX.CChip chip in listChip[i])
 					{
-						if (chip.db発声時刻ms < r指定時刻に一番近い未ヒットChipを過去方向優先で検索する(0, i).db発声時刻ms)
+						chip.nList上の位置 = n整数値管理;
+						if ((chip.nチャンネル番号 == 0x15 || chip.nチャンネル番号 == 0x16) && (n整数値管理 < this.listChip[i].Count - 1))
 						{
-							chip.n描画優先度 = 1;
+
+							if (chip.db発声時刻ms < r指定時刻に一番近い未ヒットChipを過去方向優先で検索する(0, i).db発声時刻ms)
+							{
+								chip.n描画優先度 = 1;
+							}
 						}
+						n整数値管理++;
 					}
-					n整数値管理++;
 				}
 			}
 
